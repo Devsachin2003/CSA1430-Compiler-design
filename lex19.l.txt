@@ -1,0 +1,15 @@
+%{
+#include <stdio.h>
+#include <string.h>
+%}
+
+%%
+"old_word"   { printf("new_word"); }
+.|\n         { printf("%s", yytext); }
+
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
