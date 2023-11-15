@@ -1,0 +1,29 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+.|\n { /* Ignore everything */ }
+
+%%
+
+int main() {
+    int max_length = 0;
+    int current_length = 0;
+    int c;
+
+    while ((c = getchar()) != EOF) {
+        if (c == '\n') {
+            if (current_length > max_length) {
+                max_length = current_length;
+            }
+            current_length = 0;
+        } else {
+            current_length++;
+        }
+    }
+
+    printf("Length of longest line: %d\n", max_length);
+
+    return 0;
+}
