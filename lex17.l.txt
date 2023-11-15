@@ -1,0 +1,28 @@
+%{
+#include <stdio.h>
+int vowelCount = 0;
+int consonantCount = 0;
+%}
+
+%%
+[a-zA-Z] {
+    if (yytext[0] == 'a' || yytext[0] == 'e' || yytext[0] == 'i' || yytext[0] == 'o' || yytext[0] == 'u' ||
+        yytext[0] == 'A' || yytext[0] == 'E' || yytext[0] == 'I' || yytext[0] == 'O' || yytext[0] == 'U') {
+        vowelCount++;
+    } else {
+        consonantCount++;
+    }
+}
+
+.|\n { /* Ignore everything else */ }
+
+%%
+
+int main() {
+    yylex();
+
+    printf("Number of vowels: %d\n", vowelCount);
+    printf("Number of consonants: %d\n", consonantCount);
+
+    return 0;
+}
